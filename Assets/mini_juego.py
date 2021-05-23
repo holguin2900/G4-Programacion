@@ -41,13 +41,13 @@ HEALTH_FONT = pygame.font.SysFont('comicsans',40)
 #Winner
 WINNER_FONT = pygame.font.SysFont('comicsans',100)
 
-SPACESHIP_WIDTH,SPACESHIP_HEIGHT = 55,40
+SPACESHIP_WIDTH,SPACESHIP_HEIGHT = 110,80
 
 
 
 #YELLOW_SPACESHIP_IMAGE = pygame.image.load('spaceship_yellow.png') En caso de que funcione sin el path directo
 YELLOW_SPACESHIP_IMAGE = pygame.image.load(
-    'C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\spaceship_yellow.png')
+    'C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\GitHub\\G4-Programacion\\Assets\\spaceship_yellow.png')
 #Poner doble \\ para evitar error
 
 #Scaled image
@@ -55,27 +55,27 @@ YELLOW_SPACESHIP_IMAGE = pygame.image.load(
 
 #Scaled and rotated image
 YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
-    YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),90)
+    YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),0)
 
 
 
 
 #RED_SPACESHIP_IMAGE = pygame.image.load('spaceship_red.png')
 RED_SPACESHIP_IMAGE = pygame.image.load(
-    'C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\spaceship_red.png')
+    'C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\GitHub\\G4-Programacion\\Assets\\spaceship_red.png')
 
 #Scaled image
 #RED_SPACESHIP = pygame.transform.scale(RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT))
 
 #Scaled and rotated image
 RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
-    RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),270)
+    RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),0)
 
 #Background
 #SPACE = pygame.transform.scale(
     #pygame.image.load('space.png'),(WIDTH,HEIGHT))
 SPACE = pygame.transform.scale(
-    pygame.image.load('C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\space.png'),(WIDTH,HEIGHT))
+    pygame.image.load('C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\GitHub\\G4-Programacion\\Assets\\space.png'),(WIDTH,HEIGHT))
 
 
 
