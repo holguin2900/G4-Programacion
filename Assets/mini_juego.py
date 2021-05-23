@@ -198,10 +198,10 @@ def main():
         #Winner
         winner_text = ""
         if red_health <= 0:
-            winner_text = "Yellow Wins!"
+            winner_text = "Maxwell Wins!"
         
         if yellow_health <= 0:
-            winner_text = "Red Wins!"
+            winner_text = "Tesla Wins!"
             
         if winner_text != "":
             draw_winner(winner_text) #SOMEONE WON
