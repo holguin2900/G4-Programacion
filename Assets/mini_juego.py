@@ -14,6 +14,7 @@ WIDTH, HEIGHT = 900, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("First Game!") #Title
 
+
 #Colors
 WHITE = (255,255,255) # Screen color
 BLACK = (0,0,0) # Border color
@@ -32,9 +33,9 @@ YELLOW_HIT = pygame.USEREVENT + 1
 RED_HIT = pygame.USEREVENT + 2
 #Bullets sound
 #BULLET_FIRE_SOUND = pygame.mixer.Sound('Gun+Silencer.mp3')
-BULLET_FIRE_SOUND = pygame.mixer.Sound('C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\Gun+Silencer.mp3')
+BULLET_FIRE_SOUND = pygame.mixer.Sound('Gun+Silencer.mp3')
 #BULLET_HIT_SOUND = pygame.mixer.Sound('Grenade+1.mp3')
-BULLET_HIT_SOUND = pygame.mixer.Sound('C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\Grenade+1.mp3')
+BULLET_HIT_SOUND = pygame.mixer.Sound('Grenade+1.mp3')
 
 #Health
 HEALTH_FONT = pygame.font.SysFont('comicsans',40)
@@ -46,8 +47,7 @@ SPACESHIP_WIDTH,SPACESHIP_HEIGHT = 55,40
 
 
 #YELLOW_SPACESHIP_IMAGE = pygame.image.load('spaceship_yellow.png') En caso de que funcione sin el path directo
-YELLOW_SPACESHIP_IMAGE = pygame.image.load(
-    'C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\spaceship_yellow.png')
+YELLOW_SPACESHIP_IMAGE = pygame.image.load('spaceship_yellow.png')
 #Poner doble \\ para evitar error
 
 #Scaled image
@@ -61,8 +61,7 @@ YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
 
 
 #RED_SPACESHIP_IMAGE = pygame.image.load('spaceship_red.png')
-RED_SPACESHIP_IMAGE = pygame.image.load(
-    'C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\spaceship_red.png')
+RED_SPACESHIP_IMAGE = pygame.image.load('spaceship_red.png')
 
 #Scaled image
 #RED_SPACESHIP = pygame.transform.scale(RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT))
@@ -74,8 +73,7 @@ RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
 #Background
 #SPACE = pygame.transform.scale(
     #pygame.image.load('space.png'),(WIDTH,HEIGHT))
-SPACE = pygame.transform.scale(
-    pygame.image.load('C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Tutorial pygame\\Assets\\space.png'),(WIDTH,HEIGHT))
+SPACE = pygame.transform.scale(pygame.image.load('space.png'),(WIDTH,HEIGHT))
 
 
 
