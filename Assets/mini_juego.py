@@ -42,7 +42,7 @@ HEALTH_FONT = pygame.font.SysFont('comicsans',40)
 #Winner
 WINNER_FONT = pygame.font.SysFont('comicsans',100)
 
-SPACESHIP_WIDTH,SPACESHIP_HEIGHT = 55,40
+SPACESHIP_WIDTH,SPACESHIP_HEIGHT = 110,80
 
 
 
@@ -55,7 +55,7 @@ YELLOW_SPACESHIP_IMAGE = pygame.image.load('spaceship_yellow.png')
 
 #Scaled and rotated image
 YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
-    YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),90)
+    YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),0)
 
 
 
@@ -68,7 +68,7 @@ RED_SPACESHIP_IMAGE = pygame.image.load('spaceship_red.png')
 
 #Scaled and rotated image
 RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
-    RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),270)
+    RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),0)
 
 #Background
 #SPACE = pygame.transform.scale(
@@ -196,10 +196,10 @@ def main():
         #Winner
         winner_text = ""
         if red_health <= 0:
-            winner_text = "Yellow Wins!"
+            winner_text = "Maxwell Wins!"
         
         if yellow_health <= 0:
-            winner_text = "Red Wins!"
+            winner_text = "Tesla Wins!"
             
         if winner_text != "":
             draw_winner(winner_text) #SOMEONE WON
