@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # -*- coding: utf-8 -*-
 """
 Created on Wed May 19 19:21:05 2021
@@ -58,6 +59,85 @@ def minijuego_1():
     YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
         YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,YELLOW_SPACESHIP_IMAGE.get_height()*SPACESHIP_WIDTH//YELLOW_SPACESHIP_IMAGE.get_width())),0)
     
+=======
+import pygame
+import os #Id path of the image
+pygame.font.init() #Intialize the pygame's font library. 
+pygame.mixer.init()#Sound effects
+
+
+WIDTH, HEIGHT = 900, 500
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("First Game!") #Title
+
+
+#Colors
+WHITE = (255,255,255) # Screen color
+BLACK = (0,0,0) # Border color
+RED = (255,0,0)
+YELLOW = (255,255,0)
+#Border
+BORDER = pygame.Rect(WIDTH//2-5,0,10,HEIGHT) #Anticlockwise draw
+
+FPS = 60 #Speed of our game to add up.
+VEL = 5
+
+#Bullets
+BULLETS_VEL = 7
+MAX_BULLETS = 3
+YELLOW_HIT = pygame.USEREVENT + 1
+RED_HIT = pygame.USEREVENT + 2
+#Bullets sound
+#BULLET_FIRE_SOUND = pygame.mixer.Sound('Gun+Silencer.mp3')
+BULLET_FIRE_SOUND = pygame.mixer.Sound('Gun+Silencer.mp3')
+#BULLET_HIT_SOUND = pygame.mixer.Sound('Grenade+1.mp3')
+BULLET_HIT_SOUND = pygame.mixer.Sound('Grenade+1.mp3')
+
+#Health
+HEALTH_FONT = pygame.font.SysFont('comicsans',40)
+#Winner
+WINNER_FONT = pygame.font.SysFont('comicsans',100)
+
+SPACESHIP_WIDTH,SPACESHIP_HEIGHT = 110,80
+
+
+
+#YELLOW_SPACESHIP_IMAGE = pygame.image.load('spaceship_yellow.png') En caso de que funcione sin el path directo
+YELLOW_SPACESHIP_IMAGE = pygame.image.load('spaceship_yellow.png')
+#Poner doble \\ para evitar error
+
+#Scaled image
+#YELLOW_SPACESHIP = pygame.transform.scale(YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT))
+
+#Scaled and rotated image
+YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
+    YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),0)
+
+
+
+
+#RED_SPACESHIP_IMAGE = pygame.image.load('spaceship_red.png')
+RED_SPACESHIP_IMAGE = pygame.image.load('spaceship_red.png')
+
+#Scaled image
+#RED_SPACESHIP = pygame.transform.scale(RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT))
+
+#Scaled and rotated image
+RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
+    RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH,SPACESHIP_HEIGHT)),0)
+
+#Background
+#SPACE = pygame.transform.scale(
+    #pygame.image.load('space.png'),(WIDTH,HEIGHT))
+SPACE = pygame.transform.scale(pygame.image.load('space.png'),(WIDTH,HEIGHT))
+
+
+
+def draw_window(red,yellow,red_bullets,yellow_bullets, red_health, yellow_health): #Position of our rectangles
+    WIN.blit(SPACE,(0,0))
+   # WIN.fill(WHITE) # (It's white) To fill the screen with a specific color.
+    pygame.draw.rect(WIN, BLACK, BORDER) # It's similar to WIN.blit()
+>>>>>>> Stashed changes
     
     
     
