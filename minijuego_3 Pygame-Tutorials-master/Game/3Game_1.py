@@ -2,7 +2,7 @@ def minijuego3():
     import pygame
     
     pygame.init()
-    ADDRES = "C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\WPy64-3940\\notebooks\\Pygame-Tutorials-master\\Game"
+    ADDRES = "C:\\Users\\Usuario\\Documents\\UN\\Métodos numéricos\\APPs\\GitHub\\G4-Programacion\\minijuego_3 Pygame-Tutorials-master\\Game"
     #Screen
     win_width,win_height = 500,500
     win = pygame.display.set_mode((win_width,win_height))
@@ -13,10 +13,12 @@ def minijuego3():
     #Colors
     RED = (255,0,0)
     GREEN = (0,255,0)
-    BLUE = (0,0,255)
+    BLUE = (0,100,200)
     BLACK = (0,0,0)
     WHITE = (255,255,255)
     GREEN_DARKER = (0,125,0)
+    #Fonts
+    WINNER_FONT = pygame.font.SysFont('comicsans',100)
     #Images
     walkRight = [pygame.image.load(ADDRES+'\\R1.png'), pygame.image.load(ADDRES+'\\R2.png'), pygame.image.load(ADDRES+'\\R3.png'), pygame.image.load(ADDRES+'\\R4.png'), pygame.image.load(ADDRES+'\\R5.png'), pygame.image.load(ADDRES+'\\R6.png'), pygame.image.load(ADDRES+'\\R7.png'), pygame.image.load(ADDRES+'\\R8.png'), pygame.image.load(ADDRES+'\\R9.png')]
     walkLeft = [pygame.image.load(ADDRES+'\\L1.png'), pygame.image.load(ADDRES+'\\L2.png'), pygame.image.load(ADDRES+'\\L3.png'), pygame.image.load(ADDRES+'\\L4.png'), pygame.image.load(ADDRES+'\\L5.png'), pygame.image.load(ADDRES+'\\L6.png'), pygame.image.load(ADDRES+'\\L7.png'), pygame.image.load(ADDRES+'\\L8.png'), pygame.image.load(ADDRES+'\\L9.png')]
@@ -30,11 +32,12 @@ def minijuego3():
     hitSound = pygame.mixer.Sound(ADDRES+"\\hit.mp3")
     jumpSound = pygame.mixer.Sound(ADDRES+"\\jump.wav")
     
-    music = pygame.mixer.music.load(ADDRES+"\\music.mp3")
+    pygame.mixer.music.load(ADDRES+"\\music.mp3")
+    pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1)
-    
     #Player
-    HEALTH = 10
+    HEALTH = 50
+    P_HEALTH = 50
     score = 0
     N_BULLETS = 4
     class Player(object):
@@ -52,6 +55,7 @@ def minijuego3():
             self.standing = True
             self.hitbox = (self.x + 17, self.y + 11, 29, 52)
             self.shootLoop = 0
+            self.health = P_HEALTH
             
         def draw(self,win):
             if self.walkCount + 1 >= 27:
@@ -71,13 +75,21 @@ def minijuego3():
                     win.blit(walkLeft[0], (self.x, self.y))
             self.hitbox = (self.x + 17, self.y + 11, 29, 52)
             #pygame.draw.rect(win, RED , self.hitbox,2)
+            pygame.draw.rect(win, RED, (self.hitbox[0],self.hitbox[1]-20,50,10))
+            pygame.draw.rect(win, GREEN_DARKER, (self.hitbox[0],self.hitbox[1]-20,50-(50//P_HEALTH)*(P_HEALTH-self.health),10))
             
         def hit(self):
             self.isJump = False
             self.jumpCount = 10
-            self.x, self.y = 50, win_height - char.get_height()
+            self.x = 60
+            self.y = win_height - win_height//3
             self.walkCount = 0
-            font1 = pygame.font.SysFont('comicsans',100)
+            #####################################################
+            if self.health <= 0:
+                self.health = 0
+            else:
+                self.health -= 10
+            font1 = pygame.font.SysFont('comicsans',50)
             text = font1.render("-5",1 ,RED)
             win.blit(text,((win_width-text.get_width())//2,(win_height-text.get_height())//2))
             pygame.display.update()
@@ -106,7 +118,7 @@ def minijuego3():
                 else:
                     facing = 1 
                 if len(bullets)<= N_BULLETS:
-                    bullets.append(Projectile((self.x + self.width//2),(self.y + self.height//2),6, BLACK,facing))
+                    bullets.append(Projectile((self.x + self.width//2),(self.y + self.height//2),6, BLUE,facing))
                 self.shootLoop = 1
                 
             if keys[pygame.K_LEFT] and self.x - self.vel > 0 :
@@ -141,8 +153,7 @@ def minijuego3():
                 else:
                     self.isJump = False
                     self.jumpCount = 10
-                    
-            
+      
     class Projectile (object):
         def __init__(self,x,y,radius,color,facing):
             self.x = x
@@ -188,7 +199,7 @@ def minijuego3():
                 
                 #Health
                 pygame.draw.rect(win, RED, (self.hitbox[0],self.hitbox[1]-20,50,10))
-                pygame.draw.rect(win, GREEN_DARKER, (self.hitbox[0],self.hitbox[1]-20,50-5*(HEALTH-self.health),10))
+                pygame.draw.rect(win, GREEN_DARKER, (self.hitbox[0],self.hitbox[1]-20,50-(50//HEALTH)*(HEALTH-self.health),10))
       
         def move(self):
             if self.vel > 0:
@@ -209,14 +220,15 @@ def minijuego3():
                 self.health -= 1
             else:
                 self.visible = False
-        
+    
+      
     ############################################################################################################
     def redrawGameWindow():
         global walkCount 
         win.blit(bg, (0,0))
         #Text
-        text = font.render('Score: ' + str(score), 1, BLACK)
-        win.blit(text,(win_width - 150,10))       
+        text = font.render('Score: ' + str(score), 1, WHITE)
+        win.blit(text,((win_width - text.get_width())//2,10))       
         
         man.draw(win) 
         goblin.draw(win)
@@ -225,43 +237,68 @@ def minijuego3():
             
             
         pygame.display.update()
+        
+    #Who wins
+    def draw_winner(t):
+        draw_text = WINNER_FONT.render(t, 1 ,WHITE)
+        win.blit(draw_text, ((win_width- draw_text.get_width())//2,(win_height - draw_text.get_height())//2))
+        ####################################################
+        text = font.render('Score: ' + str(score), 1, WHITE)
+        win.blit(text,((win_width- text.get_width())//2,(win_height - text.get_height())//2 + 150))  
+        ######################################################
+        pygame.display.update()
+        pygame.time.delay(5000) #5 seconds by a thousand
     ############################################################################################################
     font = pygame.font.SysFont("comicsans",30,True,True) 
+    shootLoop = 0
     bullets = []   
-    man = Player(50,win_height - char.get_height(),char.get_width(),char.get_height())
-    goblin = Enemy(win_width//4,win_height - enemy_walkLeft[0].get_height(),enemy_walkLeft[0].get_width(),enemy_walkLeft[0].get_height(),win_width-win_width//4)
+    man = Player(50,win_height - win_height//3,char.get_width(),char.get_height())
+    goblin = Enemy(win_width//4,win_height - win_height//3,enemy_walkLeft[0].get_width(),enemy_walkLeft[0].get_height(),win_width-win_width//4)
+    #goblin = Enemy(win_width//4,win_height - char.get_height(),enemy_walkLeft[0].get_width(),enemy_walkLeft[0].get_height(),win_width-win_width//4)
     run = True
     while run:
-        #Time
+        
         clock.tick(FPS)
-        #Exit
+        
+        if goblin.visible == True:
+            if man.hitbox[1] < goblin.hitbox[1] + goblin.hitbox[3] and man.hitbox[1] + man.hitbox[3] > goblin.hitbox[1]:
+                if man.hitbox[0] + man.hitbox[2] > goblin.hitbox[0] and man.hitbox[0] < goblin.hitbox[0] + goblin.hitbox[2]:
+                    man.hit()
+                    if score > 0:
+                        score -= 5
+                    else:
+                        score = 0
+                    goblin.health += 5
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-###############################################################################################################
-        #Bullets collision   
         for bullet in bullets:
             if goblin.visible == True and bullet.y - bullet.radius < goblin.hitbox[1] + goblin.hitbox[3] and bullet.y + bullet.radius > goblin.hitbox[1]:
                 if bullet.x + bullet.radius > goblin.hitbox[0] and bullet.x - bullet.radius < goblin.hitbox[0] + goblin.hitbox[2]:
                     goblin.hit()
                     hitSound.play()
                     score += 1
-                    bullets.pop(bullets.index(bullet))  
+                    bullets.pop(bullets.index(bullet))
+                    
             if bullet.x < win_width and bullet.x > 0:
                 bullet.x += bullet.vel
             else:
                 bullets.pop(bullets.index(bullet))
-
-###############################################################################################################            
-        #Collision between characters
-        if goblin.visible == True:
-            if man.hitbox[1] < goblin.hitbox[1] + goblin.hitbox[3] and man.hitbox[1] + man.hitbox[3] > goblin.hitbox[1]:
-                if man.hitbox[0] + man.hitbox[2] > goblin.hitbox[0] and man.hitbox[0] < goblin.hitbox[0] + goblin.hitbox[2]:
-                    man.hit()
-                    score -= 5
-###############################################################################################################        
-        #Controls
+                
+                
         man.control()
+        #Winner
+        winner_text = ""
+        if man.health <= 0:
+            winner_text = "Game Over!"
+        
+        if goblin.health <= 0:
+            winner_text = "Winner!"
+            
+        if winner_text != "":
+            draw_winner(winner_text) #SOMEONE WON
+            break
         redrawGameWindow()
     
     pygame.quit()
