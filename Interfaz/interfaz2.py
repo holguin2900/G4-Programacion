@@ -11,20 +11,20 @@ def pantalla_inicial():
     
     ventana  = pygame.display.set_mode((510,660))
     pygame.display.set_caption("Genius Guest!")
-    imagen2  = pygame.image.load("71.png")
+    imagen2  = pygame.image.load("imgs2\\72_1.png")
     
     reloj1   = pygame.time.Clock()
     fuente1  = pygame.font.SysFont("Times", 40,True,False)
     #texto1   = fuente1.render("Bienvenidos a Genius Guest",0,(50,0,0))
     segundos = 0
 
-    img1     = pygame.image.load("54.jpeg")
-    img2     = pygame.image.load("55.jpeg")
-    boton1   = Boton(img1, img2, 10, 580)
+    img1     = pygame.image.load("imgs2\\74_1.png")
+    img2     = pygame.image.load("imgs2\\73_1.png")
+    boton1   = Boton(img1, img2, 360, 550)
     
-    img3     = pygame.image.load("57_1.png")
-    img4     = pygame.image.load("58_1.png")
-    boton2   = Boton(img3, img4, 160, 580)
+    img3     = pygame.image.load("imgs2\\75_1.png")
+    img4     = pygame.image.load("imgs2\\76_1.png")
+    boton2   = Boton(img3, img4, 20, 550)
     
     click = False
     while True:

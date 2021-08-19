@@ -74,7 +74,7 @@ def registro():
     
     ventana_registro.mainloop()
     
-    
+  
 
 #REGISTRO DEL USUARIO: CREAR UN ARCHIVO CON EL NOMBRE Y CONTRASEÑA
 def registro_usuario():
